@@ -6,14 +6,11 @@
 
     public class Model : BaseDeletableModel<int>
     {
-
-        public Model()
-        {
-            this.Cars = new HashSet<Car>();
-        }
-
         public string Name { get; set; }
 
-        public ICollection<Car> Cars { get; set; }
+        public int MakeID { get; set; }
+
+        public virtual Make Make { get; set; }
+
     }
 }

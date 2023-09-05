@@ -9,10 +9,15 @@
         public Make()
         {
             this.Cars = new HashSet<Car>();
+            this.Models = new HashSet<Model>();
         }
 
         public string Name { get; set; }
 
         public ICollection<Car> Cars { get; set; }
+
+        public ICollection<Model> Models { get; set; }
+
+
     }
 }
