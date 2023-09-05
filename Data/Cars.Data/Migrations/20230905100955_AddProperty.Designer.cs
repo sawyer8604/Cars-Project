@@ -4,6 +4,7 @@ using Cars.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cars.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230905100955_AddProperty")]
+    partial class AddProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,6 +219,9 @@ namespace Cars.Data.Migrations
                     b.Property<int>("Mileage")
                         .HasColumnType("int");
 
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -244,6 +250,8 @@ namespace Cars.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("MakeId");
+
+                    b.HasIndex("ModelId");
 
                     b.HasIndex("TransmissionId");
 
@@ -394,9 +402,6 @@ namespace Cars.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MakeID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -406,8 +411,6 @@ namespace Cars.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("MakeID");
 
                     b.ToTable("Models");
                 });
@@ -576,6 +579,12 @@ namespace Cars.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Cars.Data.Models.Model", "Model")
+                        .WithMany("Cars")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Cars.Data.Models.Transmission", "Transmission")
                         .WithMany("Cars")
                         .HasForeignKey("TransmissionId")
@@ -591,6 +600,8 @@ namespace Cars.Data.Migrations
                     b.Navigation("FuelType");
 
                     b.Navigation("Make");
+
+                    b.Navigation("Model");
 
                     b.Navigation("Transmission");
                 });
@@ -610,17 +621,6 @@ namespace Cars.Data.Migrations
                     b.Navigation("AddedByUser");
 
                     b.Navigation("Car");
-                });
-
-            modelBuilder.Entity("Cars.Data.Models.Model", b =>
-                {
-                    b.HasOne("Cars.Data.Models.Make", "Make")
-                        .WithMany("Models")
-                        .HasForeignKey("MakeID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Make");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -706,8 +706,11 @@ namespace Cars.Data.Migrations
             modelBuilder.Entity("Cars.Data.Models.Make", b =>
                 {
                     b.Navigation("Cars");
+                });
 
-                    b.Navigation("Models");
+            modelBuilder.Entity("Cars.Data.Models.Model", b =>
+                {
+                    b.Navigation("Cars");
                 });
 
             modelBuilder.Entity("Cars.Data.Models.Transmission", b =>
