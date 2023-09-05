@@ -10,10 +10,14 @@
         public Area()
         {
             this.Cars = new HashSet<Car>();
+            this.Towns = new HashSet<Towns>();
         }
 
         public int Name { get; set; }
 
         public ICollection<Car> Cars { get; set; }
+
+        public ICollection<Towns> Towns { get; set; }
+
     }
 }
