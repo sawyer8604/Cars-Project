@@ -1,16 +1,34 @@
 ﻿namespace Cars.Web.Controllers
 {
     using System.Diagnostics;
-
+    using System.Linq;
+    using Cars.Data;
     using Cars.Web.ViewModels;
-
+    using Cars.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly ApplicationDbContext dbContext;
+
+        public HomeController(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+
+            var viewModel = new IndexViewModel
+            {
+                CarsCount = this.dbContext.Cars.Count(),
+                MakesCount = this.dbContext.Makes.Count(),
+                ModelsCount = this.dbContext.Models.Count(),
+                ColorCount = this.dbContext.Colors.Count(),
+
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

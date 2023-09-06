@@ -1,9 +1,22 @@
 ﻿@using Cars.Common
+@using Cars.Web.ViewModels.Home;
+@model IndexViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>You can search for a car in @Model.CarsCount ads</h2>
+    <div class="col col-lg-4">
+    <p>We have:</p>
+    
+    <ul class ="list-group">
+        <li class="list-group-item">Cars: @Model.CarsCount</li>
+        <li class="list-group-item">Makes: @Model.MakesCount</li>
+        <li class="list-group-item">Models: @Model.ModelsCount</li>
+        <li class="list-group-item">Colors: @Model.ColorCount</li>
+
+    </ul>
+    </div>
 </div>
