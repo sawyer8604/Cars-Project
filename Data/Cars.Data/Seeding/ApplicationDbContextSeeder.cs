@@ -28,6 +28,8 @@
                               new RolesSeeder(),
                               new MakesSeeder(),
                               new ModelsSeeder(),
+                              new FuelTypeSeeder(),
+                              new TransmissionSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -20,8 +20,8 @@
             { "Alfa Romeo", "Aston Martin", "Audi", "Bentley",
             "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroen", "Dacia", "Dodge", "Ferrari",
             "Fiat", "Ford", "Honda", "Hummer", "Hyundai", "Infiniti", "Isuzu", "Jaguar", "Jeep", "Kia",
-            "Lamborghini", "Lancia", "Land Rover", "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda",
-            "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Pontiac", "Porsche",
+            "Lamborghini", "Lancia", "Land Rover", "Lexus", "Maserati", "Mazda",
+            "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Porsche",
             "Renault", "Saab", "Seat", "Skoda", "Smart", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen",
             "Volvo", };
 
