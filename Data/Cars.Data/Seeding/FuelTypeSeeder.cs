@@ -1,6 +1,7 @@
 ﻿namespace Cars.Data.Seeding
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Cars.Data.Models;
@@ -9,6 +10,10 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
+            if (dbContext.FuelTypes.Any())
+            {
+                return;
+            }
             await dbContext.FuelTypes.AddAsync(new FuelType { Name = "Petrol" });
 
             await dbContext.FuelTypes.AddAsync(new FuelType { Name = "Diesel" });
