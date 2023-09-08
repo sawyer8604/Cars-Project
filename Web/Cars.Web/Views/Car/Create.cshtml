@@ -1,0 +1,30 @@
+﻿@using Cars.Web.ViewModels.Car;
+@model CreateCarInputModel
+@{
+	this.ViewData["Title"] = "Add new car";
+	var makesItems = this.Model.MakesItems.Select(x => new SelectListItem(x.Key, x.Value));
+}
+
+
+<h1>Add new Car</h1>
+
+<form method="post" class="col-md-9 offset-md-1">
+
+	<div asp-validation-summary="All" class="text-danger"></div>
+	
+	<div class="form-group">
+		<label asp-for="MakeId"></label>
+		<select asp-for="MakeId" class="form-control"
+				asp-items="makesItems">
+		</select>
+		<span asp-validation-for="MakeId" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Price"></label>
+		<input asp-for="Price" class="form-control" />
+		<span asp-validation-for="Price" class="text-danger"></span>
+	</div>
+
+	<input type="submit" class="btn btn-primary" />
+</form>

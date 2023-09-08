@@ -7,7 +7,8 @@
     using Cars.Data.Common.Repositories;
     using Cars.Data.Models;
     using Cars.Data.Repositories;
-    using Cars.Data.Seeding;   
+    using Cars.Data.Seeding;
+    using Cars.Services.Data;
     using Cars.Services.Mapping;
     using Cars.Services.Messaging;
     using Cars.Web.ViewModels;
@@ -63,7 +64,9 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            
+            services.AddTransient<IGetCountsService, GetCountService>();
+            services.AddTransient<IMakesService, MakeService>();
+
         }
 
         private static void Configure(WebApplication app)
