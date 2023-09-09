@@ -593,7 +593,7 @@
         {
             foreach (var model in models)
             {
-                await dbContext.Models.AddAsync(new Model { Name = model, MakeID = make.Id });
+                await dbContext.Models.AddAsync(new Model { Name = model});
             }
         }
     }
