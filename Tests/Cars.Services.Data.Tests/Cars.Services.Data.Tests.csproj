@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Cars.Data\Cars.Data.csproj" />
     <ProjectReference Include="..\..\Services\Cars.Services.Data\Cars.Services.Data.csproj" />
   </ItemGroup>
 
