@@ -32,7 +32,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Cars.Common\Cars.Common.csproj" />
     <ProjectReference Include="..\..\Data\Cars.Data.Models\Cars.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Data\Cars.Data\Cars.Data.csproj" />
     <ProjectReference Include="..\..\Services\Cars.Services.Data\Cars.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\Cars.Services.Mapping\Cars.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\Cars.Services.Messaging\Cars.Services.Messaging.csproj" />

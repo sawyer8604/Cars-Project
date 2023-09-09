@@ -66,10 +66,14 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IGetCountsService, GetCountService>();
             services.AddTransient<IMakesService, MakeService>();
+            services.AddTransient<IModelService, ModelService>();
+			services.AddTransient<IFuelService, FuelService>();
+			services.AddTransient<ITransmissionService, TransmissionService>();
+            services.AddTransient<ICarService, CarService>();
 
-        }
+		}
 
-        private static void Configure(WebApplication app)
+		private static void Configure(WebApplication app)
         {
             // Seed data on application startup
             using (var serviceScope = app.Services.CreateScope())
