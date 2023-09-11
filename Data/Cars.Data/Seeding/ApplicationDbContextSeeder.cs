@@ -30,6 +30,8 @@
                               new ModelsSeeder(),
                               new FuelTypeSeeder(),
                               new TransmissionSeeder(),
+                              new CarColorsSeeder(),
+                              new TownsSeeder(),
                           };
 
             foreach (var seeder in seeders)

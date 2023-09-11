@@ -26,8 +26,6 @@
 
         public DbSet<Car> Cars { get; set; }
 
-        public DbSet<Area> Areas { get; set; }
-
         public DbSet<CarColor> CarColors { get; set; }
 
         public DbSet<FuelType> FuelTypes { get; set; }
@@ -40,7 +38,7 @@
 
         public DbSet<Transmission> Transmissions { get; set; }
 
-        public DbSet<Towns> Towns { get; set; }
+        public DbSet<Town> Towns { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

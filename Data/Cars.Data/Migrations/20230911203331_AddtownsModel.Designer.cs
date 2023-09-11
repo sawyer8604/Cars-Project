@@ -4,6 +4,7 @@ using Cars.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cars.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230911203331_AddtownsModel")]
+    partial class AddtownsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,6 +156,9 @@ namespace Cars.Data.Migrations
                     b.Property<string>("AddedByUserID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("AreaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
@@ -192,9 +198,6 @@ namespace Cars.Data.Migrations
                     b.Property<string>("SellersPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TownId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TransmissionId")
                         .HasColumnType("int");
 
@@ -205,6 +208,8 @@ namespace Cars.Data.Migrations
 
                     b.HasIndex("AddedByUserID");
 
+                    b.HasIndex("AreaId");
+
                     b.HasIndex("ColorId");
 
                     b.HasIndex("FuelTypeId");
@@ -214,8 +219,6 @@ namespace Cars.Data.Migrations
                     b.HasIndex("MakeId");
 
                     b.HasIndex("ModelId");
-
-                    b.HasIndex("TownId");
 
                     b.HasIndex("TransmissionId");
 
@@ -406,7 +409,7 @@ namespace Cars.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Towns");
+                    b.ToTable("Town");
                 });
 
             modelBuilder.Entity("Cars.Data.Models.Transmission", b =>
@@ -551,6 +554,12 @@ namespace Cars.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AddedByUserID");
 
+                    b.HasOne("Cars.Data.Models.Town", "Area")
+                        .WithMany("Cars")
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Cars.Data.Models.CarColor", "Color")
                         .WithMany("Cars")
                         .HasForeignKey("ColorId")
@@ -575,12 +584,6 @@ namespace Cars.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Cars.Data.Models.Town", "Town")
-                        .WithMany("Cars")
-                        .HasForeignKey("TownId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Cars.Data.Models.Transmission", "Transmission")
                         .WithMany("Cars")
                         .HasForeignKey("TransmissionId")
@@ -589,6 +592,8 @@ namespace Cars.Data.Migrations
 
                     b.Navigation("AddedByUser");
 
+                    b.Navigation("Area");
+
                     b.Navigation("Color");
 
                     b.Navigation("FuelType");
@@ -596,8 +601,6 @@ namespace Cars.Data.Migrations
                     b.Navigation("Make");
 
                     b.Navigation("Model");
-
-                    b.Navigation("Town");
 
                     b.Navigation("Transmission");
                 });

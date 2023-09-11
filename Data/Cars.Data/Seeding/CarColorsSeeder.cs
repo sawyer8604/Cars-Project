@@ -14,11 +14,7 @@
 			if(dbContext.CarColors == null)
 			{
 				return;
-			}
-			if (dbContext.Makes.Any())
-			{
-				return;
-			}
+			}			
 
 			HashSet<string> colors = new HashSet<string>
 			{ "Red", "Orange", "Blue", "Green", "Indigo", "Violet", "Purple", "Pink", "Silver",
