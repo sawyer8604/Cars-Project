@@ -10,19 +10,18 @@
 	{
 		private readonly IDeletableEntityRepository<Car> carsRepository;
 		private readonly IDeletableEntityRepository<Area> areasRepository;
-		private readonly IDeletableEntityRepository<CarColor> colorRepository;
+		
 
-		public CarService(IDeletableEntityRepository<Car> carsRepository, IDeletableEntityRepository<Area> areasRepository,
-			IDeletableEntityRepository<CarColor> colorRepository)
+		public CarService(IDeletableEntityRepository<Car> carsRepository, IDeletableEntityRepository<Area> areasRepository)
         {
 			this.carsRepository = carsRepository;
 			this.areasRepository = areasRepository;
-			this.colorRepository = colorRepository;
 		}
         public async Task Create(CreateCarInputModel input)
 		{
 			var car = new Car();
 			car.MakeId = input.MakeId;
+			car.ModelId = input.ModelId;
 			car.FuelTypeId = input.FuelTypeId;
 			car.TransmissionId = input.TransmissionId;
 			car.Price = input.Price;
@@ -35,7 +34,7 @@
 				area.Name = input.Area;
 			}
 
-			car.AreaId = input.AreaId;
+			car.AreaId = area.Id;
 
 			car.YearOfManufacture = input.YearOfManufacture;
 
