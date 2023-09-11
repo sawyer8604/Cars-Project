@@ -28,7 +28,7 @@
 
         public DbSet<Area> Areas { get; set; }
 
-        public DbSet<Color> Colors { get; set; }
+        public DbSet<CarColor> CarColors { get; set; }
 
         public DbSet<FuelType> FuelTypes { get; set; }
 
