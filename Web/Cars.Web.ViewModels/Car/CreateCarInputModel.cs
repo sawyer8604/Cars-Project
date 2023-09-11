@@ -47,11 +47,9 @@
 
 		[Display(Name = "Color")]
 
-		public int ColorId { get; set; }
+		public int CarColorId { get; set; }
 
-        [Required]
-        [MinLength(3)]
-        public string Color { get; set; }
+		public IEnumerable<KeyValuePair<string, string>> CarColorsItems { get; set; }
 
 		[Display(Name = "Engine Power")]
 		[Range(50, 10000)]

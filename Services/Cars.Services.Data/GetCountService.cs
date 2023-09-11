@@ -10,13 +10,13 @@
         private readonly IDeletableEntityRepository<Car> carsRepository;
         private readonly IDeletableEntityRepository<Make> makesRepository;
         private readonly IDeletableEntityRepository<Model> modelsRepository;
-        private readonly IDeletableEntityRepository<Color> colorsRepository;
+        private readonly IDeletableEntityRepository<CarColor> colorsRepository;
 
         public GetCountService(
             IDeletableEntityRepository<Car> carsRepository,
             IDeletableEntityRepository<Make> makesRepository,
             IDeletableEntityRepository<Model> modelsRepository,
-            IDeletableEntityRepository<Color> colorsRepository)
+            IDeletableEntityRepository<CarColor> colorsRepository)
         {
             this.carsRepository = carsRepository;
             this.makesRepository = makesRepository;

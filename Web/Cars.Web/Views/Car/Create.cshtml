@@ -6,6 +6,7 @@
 	var modelsItems = this.Model.ModelsItems.Select(x => new SelectListItem(x.Key, x.Value));
 	var fuelTypeItems = this.Model.FuelsItems.Select(x => new SelectListItem(x.Key, x.Value));
 	var transmissionItems = this.Model.TransmissionsItems.Select(x => new SelectListItem(x.Key, x.Value));
+	var carColorItems = this.Model.CarColorsItems.Select(x => new SelectListItem(x.Key, x.Value));
 }
 
 
@@ -58,7 +59,7 @@
 	</div>
 
 	<div class="form-group">
-		<label asp-for="AreaId"></label>
+		<label asp-for="Area"></label>
 		<input asp-for="Area" class="form-control" />
 		<span asp-validation-for="Area" class="text-danger"></span>
 	</div>
@@ -70,9 +71,12 @@
 	</div>
 
 	<div class="form-group">
-		<label asp-for="ColorId"></label>
-		<input asp-for="Color" class="form-control" />
-		<span asp-validation-for="Color" class="text-danger"></span>
+		<label asp-for="CarColorId"></label>
+		<select asp-for="CarColorId" class="form-control"
+				asp-items="carColorItems">
+			<option value="">--Select Color--</option>
+		</select>
+		<span asp-validation-for="CarColorId" class="text-danger"></span>
 	</div>
 
 	<div class="form-group">

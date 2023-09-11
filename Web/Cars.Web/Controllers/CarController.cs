@@ -12,9 +12,10 @@
 		private readonly IFuelService fuelService;
 		private readonly ITransmissionService transmissionService;
 		private readonly ICarService carService;
+		private readonly ICarColorService carColorService;
 
 		public CarController(IMakesService makesService, IModelService modelService, IFuelService fuelService,
-			ITransmissionService transmissionService, ICarService carService)
+			ITransmissionService transmissionService, ICarService carService, ICarColorService carColorService)
 		{
 
             this.makesService = makesService;
@@ -22,6 +23,7 @@
 			this.fuelService = fuelService;
 			this.transmissionService = transmissionService;
 			this.carService = carService;
+			this.carColorService = carColorService;
 		}
 
         public IActionResult Create()
@@ -31,6 +33,7 @@
             viewModel.ModelsItems = this.modelService.GetAllModelsAsKeyValuePairs();
             viewModel.FuelsItems = this.fuelService.GetAllFuelsAsKeyValuePairs();
             viewModel.TransmissionsItems = this.transmissionService.GetAllTransmissionsAsKeyValuePairs();
+            viewModel.CarColorsItems = this.carColorService.GetAllColorsAsKeyValuePairs();
 
 			return this.View(viewModel);
         }

@@ -10,10 +10,10 @@
 	{
 		private readonly IDeletableEntityRepository<Car> carsRepository;
 		private readonly IDeletableEntityRepository<Area> areasRepository;
-		private readonly IDeletableEntityRepository<Color> colorRepository;
+		private readonly IDeletableEntityRepository<CarColor> colorRepository;
 
 		public CarService(IDeletableEntityRepository<Car> carsRepository, IDeletableEntityRepository<Area> areasRepository,
-			IDeletableEntityRepository<Color> colorRepository)
+			IDeletableEntityRepository<CarColor> colorRepository)
         {
 			this.carsRepository = carsRepository;
 			this.areasRepository = areasRepository;
@@ -38,15 +38,8 @@
 			car.AreaId = input.AreaId;
 
 			car.YearOfManufacture = input.YearOfManufacture;
-			car.ColorId = input.ColorId;
 
-			var color = this.colorRepository.All().FirstOrDefault(x => x.Name == input.Color);
-
-			if (color == null)
-			{
-				color = new Color();
-				color.Name = input.Color;
-			}
+			car.ColorId = input.CarColorId;
 
 			car.EnginePower = input.EnginePower;
 			car.Mileage = input.Mileage;

@@ -70,6 +70,7 @@
 			services.AddTransient<IFuelService, FuelService>();
 			services.AddTransient<ITransmissionService, TransmissionService>();
             services.AddTransient<ICarService, CarService>();
+            services.AddTransient<ICarColorService, CarColorService>();
 
 		}
 
