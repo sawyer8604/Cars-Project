@@ -39,7 +39,7 @@
 
         public int ColorId { get; set; }
 
-        public virtual Color Color { get; set; }
+        public virtual CarColor Color { get; set; }
 
         public int EnginePower { get; set; }
 

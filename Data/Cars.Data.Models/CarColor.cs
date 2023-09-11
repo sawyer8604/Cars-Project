@@ -4,11 +4,11 @@
 
     using Cars.Data.Common.Models;
 
-    public class Color : BaseDeletableModel<int>
-    {
-        public Color()
+	public class CarColor : BaseDeletableModel<int>
+	{
+        public CarColor()
         {
-                this.Cars = new HashSet<Car>();
+            this.Cars = new HashSet<Car>();
         }
 
         public string Name { get; set; }
