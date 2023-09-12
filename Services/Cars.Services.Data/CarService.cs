@@ -9,13 +9,17 @@
 	public class CarService : ICarService
 	{
 		private readonly IDeletableEntityRepository<Car> carsRepository;
-		private readonly IDeletableEntityRepository<Area> areasRepository;
-		
+		private readonly IDeletableEntityRepository<Town> areasRepository;
+		private readonly IDeletableEntityRepository<CarColor> colorRepository;
+		private readonly IDeletableEntityRepository<Town> townsRepository;
 
-		public CarService(IDeletableEntityRepository<Car> carsRepository, IDeletableEntityRepository<Area> areasRepository)
+		public CarService(IDeletableEntityRepository<Car> carsRepository, IDeletableEntityRepository<Town> areasRepository,
+			IDeletableEntityRepository<CarColor> colorRepository, IDeletableEntityRepository<Town> townsRepository)
         {
 			this.carsRepository = carsRepository;
 			this.areasRepository = areasRepository;
+			this.colorRepository = colorRepository;
+			this.townsRepository = townsRepository;
 		}
         public async Task Create(CreateCarInputModel input)
 		{
@@ -25,21 +29,9 @@
 			car.FuelTypeId = input.FuelTypeId;
 			car.TransmissionId = input.TransmissionId;
 			car.Price = input.Price;
-
-			var area = this.areasRepository.All().FirstOrDefault(x => x.Name == input.Area);
-
-			if(area == null)
-			{
-				area = new Area();
-				area.Name = input.Area;
-			}
-
-			car.AreaId = area.Id;
-
+			car.TownId = input.TownId;
 			car.YearOfManufacture = input.YearOfManufacture;
-
 			car.ColorId = input.CarColorId;
-
 			car.EnginePower = input.EnginePower;
 			car.Mileage = input.Mileage;
 			car.Description = input.Description;

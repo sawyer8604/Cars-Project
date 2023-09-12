@@ -31,9 +31,9 @@
 
         public double Price { get; set; }
 
-        public int AreaId { get; set; }
+        public int TownId { get; set; }
 
-        public virtual Area Area { get; set; }
+        public virtual Town Town { get; set; }
 
         public DateTime YearOfManufacture { get; set; }
 

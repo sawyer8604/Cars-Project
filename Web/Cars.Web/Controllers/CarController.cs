@@ -13,9 +13,10 @@
 		private readonly ITransmissionService transmissionService;
 		private readonly ICarService carService;
 		private readonly ICarColorService carColorService;
+		private readonly ITownService townService;
 
 		public CarController(IMakesService makesService, IModelService modelService, IFuelService fuelService,
-			ITransmissionService transmissionService, ICarService carService, ICarColorService carColorService)
+			ITransmissionService transmissionService, ICarService carService, ICarColorService carColorService, ITownService townService)
 		{
 
             this.makesService = makesService;
@@ -24,6 +25,7 @@
 			this.transmissionService = transmissionService;
 			this.carService = carService;
 			this.carColorService = carColorService;
+			this.townService = townService;
 		}
 
         public IActionResult Create()
@@ -34,6 +36,7 @@
             viewModel.FuelsItems = this.fuelService.GetAllFuelsAsKeyValuePairs();
             viewModel.TransmissionsItems = this.transmissionService.GetAllTransmissionsAsKeyValuePairs();
             viewModel.CarColorsItems = this.carColorService.GetAllColorsAsKeyValuePairs();
+            viewModel.TownsItems = this.townService.GetAllTownsAsKeyValuepairs();
 
 			return this.View(viewModel);
         }
@@ -43,7 +46,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                input.MakesItems = this.makesService.GetAllMakesAsKeyValuePairs();
+                //input.MakesItems = this.makesService.GetAllMakesAsKeyValuePairs();
 				return this.View(input);
             }
 
@@ -51,7 +54,12 @@
 
             //TODO: Redirect to car infopage
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(ThankYou));
         }
-    }
+
+		public IActionResult ThankYou()
+		{
+			return this.View();
+		}
+	}
 }

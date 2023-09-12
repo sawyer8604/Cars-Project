@@ -33,12 +33,10 @@
         [Range(1, 1_000_000_000)]
         public double Price { get; set; }
 
-        [Display(Name = "Area")]
-        public int AreaId { get; set; }
+		[Display(Name = "Town")]
+        public int TownId { get; set; }
 
-		[Required]
-		[MinLength(4)]
-        public string Area { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> TownsItems { get; set; }
 
 		[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}", ApplyFormatInEditMode = true)]
 		[Display(Name = "Year Of Manufacture")]

@@ -4,20 +4,17 @@
 
     using Cars.Data.Common.Models;
 
-    public class Area : BaseDeletableModel<int>
+    public class Town : BaseDeletableModel<int>
     {
 
-        public Area()
+        public Town()
         {
             this.Cars = new HashSet<Car>();
-            this.Towns = new HashSet<Towns>();
         }
 
         public string Name { get; set; }
 
         public ICollection<Car> Cars { get; set; }
-
-        public ICollection<Towns> Towns { get; set; }
 
     }
 }

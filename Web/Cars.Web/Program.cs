@@ -71,7 +71,7 @@
 			services.AddTransient<ITransmissionService, TransmissionService>();
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<ICarColorService, CarColorService>();
-
+            services.AddTransient<ITownService, TownService>();
 		}
 
 		private static void Configure(WebApplication app)
