@@ -9,17 +9,11 @@
 	public class CarService : ICarService
 	{
 		private readonly IDeletableEntityRepository<Car> carsRepository;
-		private readonly IDeletableEntityRepository<Town> areasRepository;
-		private readonly IDeletableEntityRepository<CarColor> colorRepository;
-		private readonly IDeletableEntityRepository<Town> townsRepository;
 
-		public CarService(IDeletableEntityRepository<Car> carsRepository, IDeletableEntityRepository<Town> areasRepository,
-			IDeletableEntityRepository<CarColor> colorRepository, IDeletableEntityRepository<Town> townsRepository)
+		public CarService(IDeletableEntityRepository<Car> carsRepository)
         {
 			this.carsRepository = carsRepository;
-			this.areasRepository = areasRepository;
-			this.colorRepository = colorRepository;
-			this.townsRepository = townsRepository;
+
 		}
         public async Task Create(CreateCarInputModel input)
 		{

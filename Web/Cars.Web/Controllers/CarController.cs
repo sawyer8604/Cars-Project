@@ -46,7 +46,12 @@
         {
             if (!this.ModelState.IsValid)
             {
-                //input.MakesItems = this.makesService.GetAllMakesAsKeyValuePairs();
+                input.MakesItems = this.makesService.GetAllMakesAsKeyValuePairs();
+				input.ModelsItems = this.modelService.GetAllModelsAsKeyValuePairs();
+				input.FuelsItems = this.fuelService.GetAllFuelsAsKeyValuePairs();
+				input.TransmissionsItems = this.transmissionService.GetAllTransmissionsAsKeyValuePairs();
+				input.CarColorsItems = this.carColorService.GetAllColorsAsKeyValuePairs();
+				input.TownsItems = this.townService.GetAllTownsAsKeyValuepairs();
 				return this.View(input);
             }
 
