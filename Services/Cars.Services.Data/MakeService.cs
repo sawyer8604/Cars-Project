@@ -19,7 +19,9 @@
 			{
 				x.Name,
 				x.Id
-			}).ToList().Select(x => new KeyValuePair<string, string>(x.Name.ToString(), x.Id.ToString()));
+			})
+				.OrderBy(x => x.Name)
+				.ToList().Select(x => new KeyValuePair<string, string>(x.Name.ToString(), x.Id.ToString()));
 		}
 	}
 }
