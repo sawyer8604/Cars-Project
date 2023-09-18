@@ -78,5 +78,10 @@
 		{
 			return this.View();
 		}
+
+        public IActionResult All(int id)
+        {
+            return this.View();
+        }
 	}
 }
