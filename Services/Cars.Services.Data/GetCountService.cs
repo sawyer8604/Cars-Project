@@ -7,13 +7,13 @@
 
     public class GetCountService : IGetCountsService
     {
-        private readonly IDeletableEntityRepository<Car> carsRepository;
+        private readonly IDeletableEntityRepository<MyCar> carsRepository;
         private readonly IDeletableEntityRepository<Make> makesRepository;
         private readonly IDeletableEntityRepository<Model> modelsRepository;
         private readonly IDeletableEntityRepository<CarColor> colorsRepository;
 
         public GetCountService(
-            IDeletableEntityRepository<Car> carsRepository,
+            IDeletableEntityRepository<MyCar> carsRepository,
             IDeletableEntityRepository<Make> makesRepository,
             IDeletableEntityRepository<Model> modelsRepository,
             IDeletableEntityRepository<CarColor> colorsRepository)

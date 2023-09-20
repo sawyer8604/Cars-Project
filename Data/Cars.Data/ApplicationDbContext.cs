@@ -24,7 +24,7 @@
         {
         }
 
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<MyCar> Cars { get; set; }
 
         public DbSet<CarColor> CarColors { get; set; }
 

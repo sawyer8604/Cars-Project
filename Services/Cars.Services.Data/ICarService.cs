@@ -9,6 +9,6 @@
 	{
 		Task Create(CreateCarInputModel input, string userId);
 
-		IEnumerable<CarInListViewModel> GetAll(int page, int itemsPerPage = 12);
+		IEnumerable<Т> GetAll<Т>(int page, int itemsPerPage = 12);
 	}
 }

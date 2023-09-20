@@ -8,11 +8,11 @@
     {
         public Transmission()
         {
-            this.Cars = new HashSet<Car>();
+            this.Cars = new HashSet<MyCar>();
         }
 
         public string Name { get; set; }
 
-        public ICollection<Car> Cars { get; set; }
+        public ICollection<MyCar> Cars { get; set; }
     }
 }

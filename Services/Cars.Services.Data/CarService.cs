@@ -5,20 +5,21 @@
 	using System.Threading.Tasks;
 	using Cars.Data.Common.Repositories;
 	using Cars.Data.Models;
+	using Cars.Services.Mapping;
 	using Cars.Web.ViewModels.Car;
 
 	public class CarService : ICarService
 	{
-		private readonly IDeletableEntityRepository<Car> carsRepository;
+		private readonly IDeletableEntityRepository<MyCar> carsRepository;
 
-		public CarService(IDeletableEntityRepository<Car> carsRepository)
+		public CarService(IDeletableEntityRepository<MyCar> carsRepository)
         {
 			this.carsRepository = carsRepository;
 
 		}
         public async Task Create(CreateCarInputModel input, string userId)
 		{
-            var car = new Car
+            var car = new MyCar
             {
                 MakeId = input.MakeId,
                 ModelId = input.ModelId,
@@ -39,31 +40,13 @@
 			await this.carsRepository.SaveChangesAsync();
 		}
 
-		public IEnumerable<CarInListViewModel> GetAll(int page, int itemsPerPage = 12)
+		public IEnumerable<Т> GetAll<Т>(int page, int itemsPerPage = 12)
 		{
 			var cars = this.carsRepository.AllAsNoTracking()
 				.OrderBy(x => x.Id)
-				.Skip((page - 1) * itemsPerPage ).Take(itemsPerPage)
-				.Select(x => new CarInListViewModel
-				{
-					Id = x.Id,
-					Make = x.Make.Name,
-					MakeId = x.MakeId,
-					Model = x.Model.Name,
-					FuelType = x.FuelType.Name,
-					FuelTypeId = x.FuelTypeId,
-					Transmission = x.Transmission.Name,
-					TransmissionId = x.TransmissionId,
-					Price = x.Price,
-					Town = x.Town.Name,
-					TownId = x.TownId,
-					Color = x.Color.Name,
-					Mileage = x.Mileage,
-					Description = x.Description,
-					SellersPhoneNumber = x.SellersPhoneNumber,
-					ImageUrl = "images/cars/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension,
-
-				}).ToList();
+				.Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+				.To<Т>()
+				.ToList();
 
 			return cars;
 				

@@ -5,10 +5,10 @@
 
     using Cars.Data.Common.Models;
 
-    public class Car : BaseDeletableModel<int> // Soft Deleting
+    public class MyCar : BaseDeletableModel<int> // Soft Deleting
     {
 
-        public Car()
+        public MyCar()
         {
                 this.Images = new HashSet<Image>();
         }

@@ -84,7 +84,7 @@
             var viewModel = new CarsListViewModel
             {
                 PageNumber = id,
-                Cars = this.carService.GetAll(id, 12),
+                Cars = this.carService.GetAll<CarInListViewModel>(id, 12),
 
             };
             return this.View(viewModel);
