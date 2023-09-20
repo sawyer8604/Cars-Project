@@ -51,5 +51,10 @@
 			return cars;
 				
 		}
+
+		public int GetCount()
+		{
+			return this.carsRepository.All().Count();
+		}
 	}
 }

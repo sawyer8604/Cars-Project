@@ -10,5 +10,7 @@
 		Task Create(CreateCarInputModel input, string userId);
 
 		IEnumerable<Т> GetAll<Т>(int page, int itemsPerPage = 12);
+
+		int GetCount();
 	}
 }

@@ -79,12 +79,15 @@
 			return this.View();
 		}
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
+            const int itemsPerPage = 12;
             var viewModel = new CarsListViewModel
             {
+                ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Cars = this.carService.GetAll<CarInListViewModel>(id, 12),
+                CarsCount = this.carService.GetCount(),
+                Cars = this.carService.GetAll<CarInListViewModel>(id, itemsPerPage),
 
             };
             return this.View(viewModel);
