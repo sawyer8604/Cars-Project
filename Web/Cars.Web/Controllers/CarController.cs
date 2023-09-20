@@ -81,7 +81,13 @@
 
         public IActionResult All(int id)
         {
-            return this.View();
+            var viewModel = new CarsListViewModel
+            {
+                PageNumber = id,
+                Cars = this.carService.GetAll(id, 12),
+
+            };
+            return this.View(viewModel);
         }
 	}
 }
