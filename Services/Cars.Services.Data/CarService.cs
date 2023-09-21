@@ -1,6 +1,7 @@
 ﻿namespace Cars.Services.Data
 {
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using Cars.Data.Common.Repositories;
@@ -19,6 +20,7 @@
 		}
         public async Task Create(CreateCarInputModel input, string userId)
 		{
+			
             var car = new MyCar
             {
                 MakeId = input.MakeId,
@@ -35,6 +37,21 @@
                 SellersPhoneNumber = input.SellersPhoneNumber,
                 AddedByUserID = userId,
             };
+
+			// /wwwroot/images/cars{id}.{ext}
+
+			foreach (var image in input.Images)
+			{
+				var extension = Path.GetExtension(image.FileName);
+				var dbImage = new Image
+				{
+					AddedByUserId = userId,
+					Extension = extension,
+				};
+				car.Images.Add(dbImage);
+
+				var physicalPath = $"wwwroot/images/cars/{dbImage.Id}.{extension}";
+			}
 
             await this.carsRepository.AddAsync(car);
 			await this.carsRepository.SaveChangesAsync();
