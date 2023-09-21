@@ -7,7 +7,7 @@
 
 	public interface ICarService
 	{
-		Task Create(CreateCarInputModel input, string userId);
+		Task Create(CreateCarInputModel input, string userId, string imagePath);
 
 		IEnumerable<Т> GetAll<Т>(int page, int itemsPerPage = 12);
 

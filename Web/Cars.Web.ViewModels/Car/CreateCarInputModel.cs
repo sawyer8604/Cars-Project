@@ -64,7 +64,6 @@
         [Phone]
         public string SellersPhoneNumber { get; set; }
 
-		[Range(1, 10)]
         public IEnumerable<IFormFile> Images { get; set; }
     }
 }

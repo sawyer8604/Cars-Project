@@ -43,8 +43,10 @@
 		{
 			configuration.CreateMap<MyCar, CarInListViewModel>()
 				.ForMember(x => x.ImageUrl, opt =>
-				opt.MapFrom
-				(car => "images/cars/" + car.Images.FirstOrDefault().Id + "." + car.Images.FirstOrDefault().Extension));
+					opt.MapFrom(x =>
+						x.Images.FirstOrDefault().RemoteImageUrl != null ?
+						x.Images.FirstOrDefault().RemoteImageUrl :
+						"/images/cars/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
 		}
 	}
 }

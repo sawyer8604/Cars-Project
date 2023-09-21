@@ -1,5 +1,6 @@
 ﻿namespace Cars.Services.Data
 {
+	using System;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
@@ -14,35 +15,43 @@
 		private readonly IDeletableEntityRepository<MyCar> carsRepository;
 
 		public CarService(IDeletableEntityRepository<MyCar> carsRepository)
-        {
+		{
 			this.carsRepository = carsRepository;
 
 		}
-        public async Task Create(CreateCarInputModel input, string userId)
+		public async Task Create(CreateCarInputModel input, string userId, string imagePath)
 		{
-			
-            var car = new MyCar
-            {
-                MakeId = input.MakeId,
-                ModelId = input.ModelId,
-                FuelTypeId = input.FuelTypeId,
-                TransmissionId = input.TransmissionId,
-                Price = input.Price,
-                TownId = input.TownId,
-                YearOfManufacture = input.YearOfManufacture,
-                ColorId = input.CarColorId,
-                EnginePower = input.EnginePower,
-                Mileage = input.Mileage,
-                Description = input.Description,
-                SellersPhoneNumber = input.SellersPhoneNumber,
-                AddedByUserID = userId,
-            };
 
+			var car = new MyCar
+			{
+				MakeId = input.MakeId,
+				ModelId = input.ModelId,
+				FuelTypeId = input.FuelTypeId,
+				TransmissionId = input.TransmissionId,
+				Price = input.Price,
+				TownId = input.TownId,
+				YearOfManufacture = input.YearOfManufacture,
+				ColorId = input.CarColorId,
+				EnginePower = input.EnginePower,
+				Mileage = input.Mileage,
+				Description = input.Description,
+				SellersPhoneNumber = input.SellersPhoneNumber,
+				AddedByUserID = userId,
+			};
+
+			Directory.CreateDirectory($"{imagePath}/cars");
+
+			var allowedExtensions = new[] { "jpg", "png", "gif" };
 			// /wwwroot/images/cars{id}.{ext}
 
 			foreach (var image in input.Images)
 			{
-				var extension = Path.GetExtension(image.FileName);
+				var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
+				if (!allowedExtensions.Any(x => extension.EndsWith(x)))
+				{
+					throw new Exception($"Invalid image extension {extension}");
+				}
 				var dbImage = new Image
 				{
 					AddedByUserId = userId,
@@ -50,10 +59,13 @@
 				};
 				car.Images.Add(dbImage);
 
-				var physicalPath = $"wwwroot/images/cars/{dbImage.Id}.{extension}";
+				var physicalPath = $"{imagePath}/cars/{dbImage.Id}.{extension}";
+				using (Stream fileStream = new FileStream(physicalPath, FileMode.Create))
+				{
+					await image.CopyToAsync(fileStream);
+				}
 			}
-
-            await this.carsRepository.AddAsync(car);
+			await this.carsRepository.AddAsync(car);
 			await this.carsRepository.SaveChangesAsync();
 		}
 
@@ -66,7 +78,7 @@
 				.ToList();
 
 			return cars;
-				
+
 		}
 
 		public int GetCount()
