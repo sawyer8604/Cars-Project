@@ -10,23 +10,34 @@
 	<div class="row gx-4">
 		@foreach (var car in this.Model.Cars)
 		{
-			<div class="p-5" style="width: 18rem;">
-				<img src="@car.ImageUrl" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h4 class="card-title">@car.MakeName</h4>
-					<h5 class="card-title">@car.ModelName</h5>
-					<h5 class="card-title">@car.FuelTypeName</h5>
-					<h5 class="card-title">@car.TownName</h5>
-					<h4 class="card-title">@car.Price Euro</h4>
-					<h5 class="card-title">@car.TransmissionName</h5>
-					<h5 class="card-title">@car.Mileage km</h5>
-
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+			<div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
+				<div class="card">
+					<div class="card-img-wrapper">
+						<img class="card-img-top" src="@car.ImageUrl" alt="Card image cap">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">@car.MakeName @car.ModelName @car.Price Euro @car.TownName
+							@car.Mileage km
+						</h5>
+						<p class="card-text">Fuel type @car.FuelTypeName</p>
+						<p class="card-text">Transmission @car.TransmissionName</p>
+						<p class="card-text">@car.Mileage km</p>
+						<p class="card-text">@car.Description</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
 				</div>
 			</div>
 
 		}
 	</div>
 </div>
+
+
+
 <hr/>
 <partial name="_PaggingPartial" model="@Model" />
+
+@section Scripts{
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+}
