@@ -11,7 +11,7 @@
 	{
 		public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
 		{
-			if(dbContext.CarColors == null)
+			if(dbContext.CarColors.Any())
 			{
 				return;
 			}			

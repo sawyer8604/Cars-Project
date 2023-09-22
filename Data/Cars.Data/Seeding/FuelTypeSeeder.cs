@@ -14,7 +14,7 @@
             {
                 return;
             }
-            await dbContext.FuelTypes.AddAsync(new FuelType { Name = "Petrol" });
+            await dbContext.FuelTypes.AddAsync(new FuelType { Name = "Gasoline" });
 
             await dbContext.FuelTypes.AddAsync(new FuelType { Name = "Diesel" });
 

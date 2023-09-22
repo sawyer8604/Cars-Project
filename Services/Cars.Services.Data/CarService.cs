@@ -72,7 +72,7 @@
 		public IEnumerable<Т> GetAll<Т>(int page, int itemsPerPage = 12)
 		{
 			var cars = this.carsRepository.AllAsNoTracking()
-				.OrderBy(x => x.Id)
+				.OrderByDescending(x => x.Id)
 				.Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
 				.To<Т>()
 				.ToList();
