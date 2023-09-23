@@ -1,0 +1,26 @@
+﻿@using Cars.Web.ViewModels.Car;
+@model SingleCarViewModel
+@{
+	this.ViewData["Title"] = $"{Model.MakeName} {Model.ModelName}";
+}
+
+<div class="lightbox-gallery">
+	<div class="container">
+		<div class="intro">
+			<h2 class="text-center">@Model.MakeName @Model.ModelName</h2>
+			<p class="text-center">Price: @Model.Price euro / Transmission: @Model.TransmissionName</p>
+			<p class="text-center">Fuel type: @Model.FuelTypeName / Mileage: @Model.Mileage km  </p>
+			<p class="text-center">Description: @Model.Description</p>
+			<p class="text-center">Contact: @Model.SellersPhoneNumber</p>
+		</div>
+		<div class="row photos">
+			@foreach (var image in Model.Images)
+			{
+				string currentImagePath = "/images/cars/" + image.Id + "." + image.Extension;
+				<div class="col-sm-6 col-md-4 col-lg-3 item"><a href="@currentImagePath" data-lightbox="photos"><img class="img-fluid" src="@currentImagePath"></a></div>
+
+			}
+
+		</div>
+	</div>
+</div>
