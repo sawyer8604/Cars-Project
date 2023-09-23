@@ -112,5 +112,11 @@
             };
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var car = this.carService.GetById<SingleCarViewModel>(id);
+            return this.View(car);
+        }
 	}
 }

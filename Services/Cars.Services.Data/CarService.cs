@@ -81,7 +81,15 @@
 
 		}
 
-		public int GetCount()
+        public T GetById<T>(int id)
+        {
+			var car = this.carsRepository.AllAsNoTracking().Where(x => x.Id == id)
+				.To<T>().FirstOrDefault();
+
+			return car;
+        }
+
+        public int GetCount()
 		{
 			return this.carsRepository.All().Count();
 		}
