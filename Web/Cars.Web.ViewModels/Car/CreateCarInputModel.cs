@@ -7,7 +7,7 @@
 
     public class CreateCarInputModel
     {
-        [Display(Name = "Make")]
+        [Display(Name = "Brand")]
         public int MakeId { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> MakesItems { get; set; }
